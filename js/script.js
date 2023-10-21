@@ -1,10 +1,9 @@
 // Navbar Toogle for All Pages ******************************
 let sections = document.querySelectorAll('section');
 let navLinks = document.querySelectorAll('header nav a');
-let menuBtn = document.querySelector("button.menu_toggle");
-
-menuBtn.addEventListener("click", () => {
-  menuBtn.classList.toggle("active");
+let menuBtn = document.querySelectorAll("button.menu_toggle");
+menuBtn[6].addEventListener("click", () => {
+  menuBtn[6].classList.toggle("active");
 });
 
 window.onscroll = () => {
@@ -13,31 +12,32 @@ window.onscroll = () => {
     let offset = sec.offsetTop;
     let height = sec.offsetHeight;
     let id = sec.getAttribute('id');
-if(top>= offset && top < offset + height){
-  navLinks.forEach(links => {
-    links.classList.remove('active');
-    documents.querySelector('header nav a[href*=' + id + ']').classList.add('active');
-
-
+    if(top>= offset && top < offset + height){
+      navLinks.forEach(links => {
+        links.classList.remove('active');
+        document.querySelector('header nav a[href*=' + id + ']').classList.add('active');
+        menuBtn[6].classList.remove('active');
+      });
+    }
   });
-
 }
 
-  });
-
-}
 // Hide Navbar on Scroll ******************************
 
-let navBar = document.querySelector("header");
+let navBar = document.getElementsByTagName("header");
 let scrollPos = 0;
 
 window.addEventListener("scroll", () => {
   let scrollPosNow = window.pageYOffset || document.pageYOffset;
-
+  // console.log(scrollPos+" : "+scrollPosNow);
   if (scrollPosNow > scrollPos) {
-    navBar.style.transform = "translateY(-100%)";
+    for (var i = 0; i < navBar.length; i++) {
+      navBar[i].style.transform = "translateY(-100%)";
+    }
   } else {
-    navBar.style.transform = "translateY(0)";
+    for (var i = 0; i < navBar.length; i++) {
+      navBar[i].style.transform = "translateY(0)";
+    }
   }
 
   scrollPos = scrollPosNow;
